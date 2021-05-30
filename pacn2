@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+   <head>
+      <link rel="stylesheet" href="css.css">
+      <title> PAC N2 </title>
+      <script type="text/javascript">
+         
+		 function buttonUm(){
+         if 
+         ((document.getElementById("maindiv").style.display == "block") && (document.getElementById("subdiv1").style.display == "none")){			 
+			document.getElementById("subdiv1").style.display = "block"; 
+			document.getElementById("subdiv2").style.display = "none";
+			document.getElementById("maindiv").style.display = "none";
+		 return
+		 }
+         else 
+			
+			document.getElementById("subdiv2").style.display = "none";
+			document.getElementById("subdiv1").style.display = "none";		
+			document.getElementById("maindiv").style.display = "block";
+		 return 
+				
+		}
+            
+         function buttonDois(){
+         if 
+         ((document.getElementById("maindiv").style.display == "block") && (document.getElementById("subdiv2").style.display == "none")){
+            document.getElementById("maindiv").style.display = "none"; 
+		    document.getElementById("subdiv2").style.display = "block"; 
+			document.getElementById("subdiv1").style.display = "none";	
+			return
+		 }
+         else        
+         	 document.getElementById("maindiv").style.display = "block";
+         	 document.getElementById("subdiv2").style.display = "none";
+			 document.getElementById("subdiv1").style.display = "none";			 
+			return
+         }
+         
+         
+      </script>
+   </head>
+   <body>
+      <div id="topdiv" class="topdiv1">
+         <h1 id="h1custom">PAC - Chapéus de Palha</h1>
+      </div>
+      <div id="leftdiv">
+         <p id="p2"> Trabalhos:</p>
+         <button onclick="buttonUm();" type="button" id="button1">1</button>
+         <button onclick="buttonDois();" type="button" id="button2">2</button>
+	  
+	  </div>
+	  
+	  </div>
+      <div id="maindiv">
+         <div id="maindiv2">
+		 <p class="p1" id="p1">Equipe:</p>
+         <p id="p3">- Chapéus de Palha</p>
+         <p class="p1" id="p1">Integrantes:</p>
+         <p id="p3">- Gustavo Henrique Borges<br>- Luis Felipe Francisco<br>- Ademilson</p>
+		 </div>
+		 <div id="maindiv3">
+		 <p class="p1" id="p1">Sobre o grupo:</p>
+         <p id="p3">- Nada de muito especial no nosso grupo, apenas cada<br> um fazendo e ajudando um pouco até o resultado final.</p>
+		 </div>
+		 <div id="maindiv4">
+		 <p class="p6">Logo:</p>
+			<img src='logogrupo.png'>
+		 </div>
+         
+      </div>
+      
+	  <div id="subdiv1">
+		<legend id="legendpac" style="margin-left:45%;" style="color:#ffffff;">Vídeo do PAC.</legend>
+		
+		<iframe type="video/mp4" src="PAC.mp4" class="iframe1"  scrolling="no" 
+		frameborder="1" marginheight="0px" marginwidth="0px" height="500px" width="600px" allowfullscreen></iframe>
+		
+		<div id="subsubdiv1">
+		<p class="p4">Trabalho feito em grupo, explicando brevemente como a robótica é afetada pela T.I e como isso molda o nosso mundo com exemplos visuais.<br>&nbsp
+	   Mostrando que pode estar presente em áreas que muitas vezes nem sabemos, ajudando de pacientes até em produção de larga escala.</p>
+		</div>
+	  </div>
+	  <div id ="subdiv2">
+		<div id="divsplit" class="myBox">
+		// C++ code<br>
+//<br>
+
+// MOTOR<br>
+#define IN1 2<br>
+#define IN2 4<br>
+#define IN3 7<br>
+#define IN4 5<br>
+#define ENA 3<br>
+#define ENB 6<br>
+<br>
+// LED RGB<br>
+#define LEDR 9<br>
+#define LEDB 10<br>
+#define LEDG 11<br>
+<br>
+// SENSOR<br>
+#define S1 A0<br>
+#define S2 A1<br>
+#define S3 A2<br>
+#define S4 A3<br>
+<br>
+void setup()<br>
+{<br>
+  // MOTOR<br>
+  pinMode(IN1,OUTPUT);<br>
+  pinMode(IN2,OUTPUT);<br>
+  pinMode(IN3,OUTPUT);<br>
+  pinMode(IN4,OUTPUT);<br>
+  pinMode(ENA,OUTPUT);<br>
+  pinMode(ENB,OUTPUT);<br>
+  analogWrite(ENA,255);<br>
+  analogWrite(ENB,255);<br>
+  <br>
+  // LED RGB<br>
+  pinMode(LEDR, OUTPUT);<br>
+  pinMode(LEDB, OUTPUT);<br>
+  pinMode(LEDG, OUTPUT);<br>
+  <br>
+  Serial.begin(9600);<br>
+}<br>
+<br>
+void loop()<br>
+{<br>
+  // Leitura dos sensores<br>
+  int s1, s2, s3, s4;<br>
+  <br>
+  s1=analogRead(S1);<br>
+  s2=analogRead(S2);<br>
+  s3=analogRead(S3);<br>
+  s4=analogRead(S4);<br>
+  <br>
+  int luz = 500;<br>
+  <br>
+  Serial.print(s1);<br>
+  Serial.print(" ");<br>
+  Serial.print(s2);<br>
+  Serial.print(" ");<br>
+  Serial.print(s3);<br>
+  Serial.print(" ");<br>
+  Serial.print(s4);<br>
+  Serial.print(" ");<br>
+  <br>
+  if(s1<luz && s2>luz && s3>luz && s4<luz){<br>
+    //frente<br>
+    Serial.println(" Frente ");<br>
+    <br>
+    digitalWrite(LEDR, LOW);<br>
+    digitalWrite(LEDG, HIGH);<br>
+    digitalWrite(LEDB, LOW);<br>
+    
+    digitalWrite(IN1,HIGH);<br>
+  	digitalWrite(IN2,LOW);<br>
+  	digitalWrite(IN3,LOW);<br>
+  	digitalWrite(IN4,HIGH);<br>
+  }else if (s1>luz && s2<luz && s3<luz && s4<luz){<br>
+    // direita<br>
+    Serial.println(" Direita ");<br>
+    <br>
+    digitalWrite(LEDR, HIGH);<br>
+    digitalWrite(LEDG, LOW);<br>
+    digitalWrite(LEDB, LOW);<br>
+    <br>
+    digitalWrite(IN1,LOW);<br>
+    digitalWrite(IN2,HIGH);<br>
+    digitalWrite(IN3,LOW);<br>
+    digitalWrite(IN4,HIGH);<br>
+  }else if (s1<luz && s2<luz && s3<luz && s4>luz){<br>
+    // esquerda<br>
+    Serial.println(" Esquerda ");<br>
+    <br>
+    digitalWrite(LEDR, HIGH);<br>
+    digitalWrite(LEDG, LOW);<br>
+    digitalWrite(LEDB, LOW);<br>
+    <br>
+    digitalWrite(IN1,HIGH);<br>
+    digitalWrite(IN2,LOW);<br>
+    digitalWrite(IN3,HIGH);<br>
+    digitalWrite(IN4,LOW);<br>
+  }else{<br>
+    // desligado<br>
+    Serial.println(" Parado ");<br>
+    <br>
+    digitalWrite(LEDR, LOW);<br>
+    digitalWrite(LEDG, LOW);<br>
+    digitalWrite(LEDB, HIGH);<br>
+    <br>
+
+    digitalWrite(IN1,LOW);<br>
+    digitalWrite(IN2,LOW);<br>
+    digitalWrite(IN3,LOW);<br>
+    digitalWrite(IN4,LOW);<br>
+  }<br>
+}<br>	
+		</div>
+		<div id="divsplit2" class="myBox">
+		<img src="seguidordelinha.png" width="100%" style="border-radius:30px;">
+		
+		
+		</div>
+		<div id="divsplit3" class="myBox">
+			<p style="color:#ffffff;">Usando o arduino junto aos sensores, o seguidor de linha calcula o quanto deve ir para cada lado,<br>lendo a superfície que está em cima.
+			</p>
+		</div>
+		
+		
+		
+		</div>
+   </body>
+</html>
